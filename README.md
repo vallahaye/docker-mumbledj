@@ -28,8 +28,18 @@ $ wget https://raw.githubusercontent.com/matthieugrieger/mumbledj/master/config.
 
 Edit the configuration file as needed, then run a container with it mounted inside.
 
+For information on the syntax of the configuration file, see [the official documentation](https://github.com/matthieugrieger/mumbledj/blob/138c1008eb51b2245e62f504f4583e4e0a1dc5ae/README.md).
+
 ```console
-$ docker run -d --name mumbledj --restart=unless-stopped -v mumbledj-config.yaml:/root/.config/mumbledj/config.yaml:ro mumbledj
+$ docker run -d --name mumbledj --restart=unless-stopped -v /host/path/mumbledj-config.yaml:/root/.config/mumbledj/config.yaml:ro mumbledj
+```
+
+## Entrypoint quiet logs
+
+A verbose entrypoint is available to provide information on what's happening during container startup. You can silence this output by setting environment variable `MUMBLEDJ_ENTRYPOINT_QUIET_LOGS`:
+
+```console
+$ docker run -d -e MUMBLEDJ_ENTRYPOINT_QUIET_LOGS=1 mumbledj
 ```
 
 # License
